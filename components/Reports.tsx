@@ -1,7 +1,7 @@
 'use client'
 
 import { useSelector } from 'react-redux'
-import { RootState } from '../../lib/store'
+import { RootState } from '../lib/store'
 import { PieChart, Pie, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import { useState, useEffect } from 'react'
 import { generatePDF } from './PDFGenerator'

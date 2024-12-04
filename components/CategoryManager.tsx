@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../../lib/store'
-import { addCategory, updateCategory, deleteCategory } from '../../lib/slices/categoriesSlice'
+import { RootState } from '../lib/store'
+import { addCategory, updateCategory, deleteCategory } from '../lib/slices/categoriesSlice'
 
 export default function CategoryManager() {
   const dispatch = useDispatch()

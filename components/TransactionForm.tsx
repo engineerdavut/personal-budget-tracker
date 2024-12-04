@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTransaction } from '../../lib/slices/transactionsSlice'
-import { RootState } from '../../lib/store'
+import { addTransaction } from '../lib/slices/transactionsSlice'
+import { RootState } from '../lib/store'
 import { v4 as uuidv4 } from 'uuid'
 
 export default function TransactionForm() {
