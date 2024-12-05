@@ -15,7 +15,7 @@ A comprehensive web application for managing personal finances, built with Next.
 ## Live Demo
 
 Check out the live demo of the Personal Budget Tracker:
-[https://personal-budget-tracker-helln0vhp-davuts-projects-2c0064cc.vercel.app/](https://personal-budget-tracker-helln0vhp-davuts-projects-2c0064cc.vercel.app/)
+[personal-budget-tracker-psi.vercel.app](personal-budget-tracker-psi.vercel.app)
 
 ## Prerequisites
 
