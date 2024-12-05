@@ -1,7 +1,28 @@
 import { configureStore } from '@reduxjs/toolkit'
-import transactionsReducer from './slices/transactionsSlice'
-import categoriesReducer from './slices/categoriesSlice'
-import themeReducer from './slices/themeSlice'
+import transactionsReducer, { TransactionsState } from './slices/transactionsSlice'
+import categoriesReducer, { CategoriesState } from './slices/categoriesSlice'
+import themeReducer, { ThemeState } from './slices/themeSlice'
+import { localStorageMiddleware } from './localStorageMiddleware'
+
+export interface RootState {
+  transactions: TransactionsState
+  categories: CategoriesState
+  theme: ThemeState
+}
+
+const loadState = (): RootState | undefined => {
+  try {
+    const serializedState = localStorage.getItem('reduxState')
+    if (serializedState === null) {
+      return undefined
+    }
+    return JSON.parse(serializedState) as RootState
+  } catch (err) {
+    return undefined
+  }
+}
+
+const preloadedState = loadState()
 
 export const store = configureStore({
   reducer: {
@@ -9,7 +30,10 @@ export const store = configureStore({
     categories: categoriesReducer,
     theme: themeReducer,
   },
+  preloadedState,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(localStorageMiddleware),
 })
 
-export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
+

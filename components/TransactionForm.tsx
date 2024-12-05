@@ -4,11 +4,10 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTransaction } from '../lib/slices/transactionsSlice'
 import { RootState } from '../lib/store'
-import { v4 as uuidv4 } from 'uuid'
 
 export default function TransactionForm() {
   const dispatch = useDispatch()
-  const categories = useSelector((state: RootState) => state.categories) || []
+  const categories = useSelector((state: RootState) => state.categories)
 
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState('')
@@ -18,20 +17,24 @@ export default function TransactionForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    dispatch(addTransaction({
-      id: uuidv4(),
-      description,
-      amount: parseFloat(amount),
-      date,
-      category: categories.find(cat => cat.id === categoryId)?.name || '', 
-      categoryId,
-      type
-    }))
-    setDescription('')
-    setAmount('')
-    setDate('')
-    setCategoryId('')
+    const selectedCategory = categories.find(cat => cat.id === categoryId)
+    if (selectedCategory) {
+      dispatch(addTransaction({
+        description,
+        amount: parseFloat(amount),
+        date,
+        category: selectedCategory.name,
+        categoryId,
+        type
+      }))
+      setDescription('')
+      setAmount('')
+      setDate('')
+      setCategoryId('')
+    }
   }
+
+  const filteredCategories = categories.filter(category => category.type === type)
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
@@ -71,21 +74,6 @@ export default function TransactionForm() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="category" className="block mb-2">Category</label>
-          <select
-            id="category"
-            value={categoryId}
-            onChange={(e) => setCategoryId(e.target.value)}
-            className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600"
-            required
-          >
-            <option value="">Select a category</option>
-            {categories && categories.map((category: { id: string, name: string }) => (
-              <option key={category.id} value={category.id}>{category.name}</option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-4">
           <label className="block mb-2">Type</label>
           <div>
             <label className="inline-flex items-center mr-4">
@@ -109,6 +97,21 @@ export default function TransactionForm() {
               <span className="ml-2">Income</span>
             </label>
           </div>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="category" className="block mb-2">Category</label>
+          <select
+            id="category"
+            value={categoryId}
+            onChange={(e) => setCategoryId(e.target.value)}
+            className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600"
+            required
+          >
+            <option value="">Select a category</option>
+            {filteredCategories.map((category) => (
+              <option key={category.id} value={category.id}>{category.name}</option>
+            ))}
+          </select>
         </div>
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
           Add Transaction

@@ -6,7 +6,7 @@ export interface Transaction {
   amount: number
   date: string
   category: string
-  categoryId: string;
+  categoryId: string
   type: 'income' | 'expense'
 }
 
@@ -16,7 +16,7 @@ const transactionsSlice = createSlice({
   name: 'transactions',
   initialState,
   reducers: {
-    addTransaction: (state, action: PayloadAction<Transaction>) => {
+    addTransaction: (state, action: PayloadAction<Omit<Transaction, 'id'>>) => {
       state.push({ ...action.payload, id: Date.now().toString() })
     },
     deleteTransaction: (state, action: PayloadAction<string>) => {
@@ -27,3 +27,5 @@ const transactionsSlice = createSlice({
 
 export const { addTransaction, deleteTransaction } = transactionsSlice.actions
 export default transactionsSlice.reducer
+export type TransactionsState = ReturnType<typeof transactionsSlice.reducer>
+

@@ -1,4 +1,5 @@
-declare var jsPDF: any;
+import { jsPDF } from 'jspdf'
+import autoTable from 'jspdf-autotable'
 
 interface Transaction {
   date: string
@@ -38,7 +39,7 @@ export const generatePDF = (transactions: Transaction[], categories: Category[])
     `$${t.amount.toFixed(2)}`
   ])
 
-  doc.autoTable({
+  autoTable(doc, {
     startY: 25 + categories.length * 10 + 10,
     head: [['Date', 'Description', 'Category', 'Type', 'Amount']],
     body: tableData,

@@ -28,11 +28,11 @@ export default function BudgetAlerts() {
   if (alerts.length === 0) return null
 
   return (
-    <div className="mb-8 p-4 bg-yellow-100 dark:bg-yellow-800 rounded-lg">
-      <h2 className="text-xl font-bold mb-2">Budget Alerts</h2>
+    <div className="mb-8 p-4 bg-red-100 dark:bg-red-800 rounded-lg">
+      <h2 className="text-xl font-bold mb-2 text-red-800 dark:text-red-100">Budget Alerts</h2>
       <ul>
         {alerts.map((alert, index) => (
-          <li key={index} className="text-sm">{alert}</li>
+          <li key={index} className="text-sm text-red-700 dark:text-red-200">{alert}</li>
         ))}
       </ul>
     </div>
