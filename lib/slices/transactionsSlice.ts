@@ -6,6 +6,7 @@ export interface Transaction {
   amount: number
   date: string
   category: string
+  categoryId: string;
   type: 'income' | 'expense'
 }
 

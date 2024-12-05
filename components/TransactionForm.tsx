@@ -23,6 +23,7 @@ export default function TransactionForm() {
       description,
       amount: parseFloat(amount),
       date,
+      category: categories.find(cat => cat.id === categoryId)?.name || '', 
       categoryId,
       type
     }))
