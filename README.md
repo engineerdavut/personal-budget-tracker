@@ -1,6 +1,6 @@
 # Personal Budget Tracker
 
-![Personal Budget Tracker](https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo1.png)
+![Personal Budget Tracker](https://sjc.microlink.io/As812L2HP-zRNSqlSeNF18E22ZhYE9LGRKcCunlOVOKjTjfHqtXlzwfsCZ0EWL_GFU2khXi0-qhTwdBdusqd_w.jpeg)
 
 A comprehensive web application for managing personal finances, built with Next.js, React, and Redux.
 
@@ -15,7 +15,7 @@ A comprehensive web application for managing personal finances, built with Next.
 ## Live Demo
 
 Check out the live demo of the Personal Budget Tracker:
-[personal-budget-tracker-psi.vercel.app](personal-budget-tracker-psi.vercel.app)
+[https://personal-budget-tracker-psi.vercel.app/](https://personal-budget-tracker-psi.vercel.app/)
 
 ## Prerequisites
 
