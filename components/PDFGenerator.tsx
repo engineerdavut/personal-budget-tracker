@@ -1,5 +1,4 @@
-import { jsPDF } from 'jspdf'
-import 'jspdf-autotable'
+declare var jsPDF: any;
 
 interface Transaction {
   date: string
@@ -43,7 +42,7 @@ export const generatePDF = (transactions: Transaction[], categories: Category[])
     startY: 25 + categories.length * 10 + 10,
     head: [['Date', 'Description', 'Category', 'Type', 'Amount']],
     body: tableData,
-  });
+  })
 
   doc.save('financial_report.pdf')
 }
