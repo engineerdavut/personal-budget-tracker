@@ -15,7 +15,7 @@ const transactionsSlice = createSlice({
   name: 'transactions',
   initialState,
   reducers: {
-    addTransaction: (state, action: PayloadAction<Omit<Transaction, 'id'>>) => {
+    addTransaction: (state, action: PayloadAction<Transaction>) => {
       state.push({ ...action.payload, id: Date.now().toString() })
     },
     deleteTransaction: (state, action: PayloadAction<string>) => {
